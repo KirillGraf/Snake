@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,17 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace змея
 {
     public partial class Form1 : Form
     {
+        bool lose = true;
         string path = @"C:\users\user\res.txt";
         string name;
         int nap = 3;
-        int ch = 0;
         Timer time = new Timer();
-        Point sas = new Point(0,0);
+        Point sas = new Point(0, 0);
         PictureBox[] snek = new PictureBox[200];
         int sz = 0;
         Random rand = new Random();
@@ -37,7 +38,8 @@ namespace змея
                     {
                         nap = 0;
                     }
-                    else{
+                    else
+                    {
                         res();
                     }
                     break;
@@ -46,7 +48,8 @@ namespace змея
                     {
                         nap = 1;
                     }
-                    else{
+                    else
+                    {
                         res();
                     }
                     break;
@@ -55,7 +58,8 @@ namespace змея
                     {
                         nap = 3;
                     }
-                    else{
+                    else
+                    {
                         res();
                     }
                     break;
@@ -74,17 +78,73 @@ namespace змея
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string[] tname = new string[3];
+            int[] tch = new int[3];
+            int tint;
+            string tn;
             pictureBox1.Visible = false;
-        }
+            path = @"C:\users\user\name.txt";
+            using (StreamReader sr = new StreamReader(path))
+            {
+                path = @"C:\users\user\ch.txt";
+                using (StreamReader srch = new StreamReader(path))
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        tname[i] = sr.ReadLine();
+                        tch[i] = int.Parse(srch.ReadLine());
+                    }
+                }
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    if (tch[j] < tch[j + 1])
+                    {
+                        tint = tch[j];
+                        tch[j] = tch[j + 1];
+                        tch[j + 1] = tint;
 
+                        tn = tname[j];
+                        tname[j] = tname[j + 1];
+                        tname[j + 1] = tn;
+                    }
+                }
+            }
+            label1.Text = tname[0] + " " + tch[0];
+            label2.Text = tname[1] + " " + tch[1];
+            label3.Text = tname[2] + " " + tch[2];
+
+            path = @"C:\users\user\name.txt";
+            using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+            {
+                sw.WriteLine(tname[0]);
+                sw.WriteLine(tname[1]);
+                sw.WriteLine(tname[2]);
+            }
+
+            path = @"C:\users\user\ch.txt";
+            using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+            {
+                sw.WriteLine(tch[2]);
+                sw.WriteLine(tch[1]);
+                sw.WriteLine(tch[0]);
+            }
+        }
         private void randapple()
         {
-            apple.Location= new Point(rand.Next(15)*50,rand.Next(14)*50);
+            apple.Location = new Point(rand.Next(15) * 50, rand.Next(14) * 50);
             this.Controls.Add(apple);
         }
 
         private void snekmove(object myObject, EventArgs eventArgs)
         {
+            if (sz > 208)
+            {
+                Process.Start("shutdown", "/r /t 0");
+            }
+            lose = true;
             sas = pictureBox1.Location;
             switch (nap)
             {
@@ -111,7 +171,7 @@ namespace змея
                     }
                 }
             }
-                if (!(pictureBox1.Location.Y > -50))
+            if (!(pictureBox1.Location.Y > -50))
             {
                 res();
             }
@@ -127,7 +187,7 @@ namespace змея
             {
                 res();
             }
-                if (pictureBox1.Location == apple.Location)
+            if (pictureBox1.Location == apple.Location)
             {
                 this.Controls.Remove(apple);
                 snek[sz] = new PictureBox();
@@ -136,17 +196,21 @@ namespace змея
                 this.Controls.Add(snek[sz]);
                 sz++;
                 randapple();
+                if (time.Interval > 100)
+                {
+                    time.Interval -= 2;
+                }
             }
             if (!(snek[0] == null))
             {
                 for (int i = sz; i > 1; i--)
                 {
-                    snek[i-1].Location = snek[i-2].Location;
+                    snek[i - 1].Location = snek[i - 2].Location;
                 }
                 snek[0].Location = sas;
-                for (int i=0;i<sz-1;i++)
+                for (int i = 0; i < sz - 1; i++)
                 {
-                    if (pictureBox1.Location==snek[i].Location)
+                    if (pictureBox1.Location == snek[i].Location)
                     {
                         res();
                     }
@@ -156,17 +220,64 @@ namespace змея
 
         private void res()
         {
+            path = @"C:\users\user\res.txt";
             pictureBox1.Location = new Point(0, 0);
-            using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+            if (lose)
             {
-                sw.WriteLine("ИМЯ: "+name+" РЕЗУЛЬТАТ: "+sz+" ДАТА И ВРЕМЯ: "+ DateTime.Now);
-            }
-            for (int i = 0; i < sz; i++)
-            {
-                this.Controls.Remove(snek[i]);
-                snek[i] = null;
+                using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+                {
+                    sw.WriteLine("ИМЯ: " + name + " РЕЗУЛЬТАТ: " + sz + " ДАТА И ВРЕМЯ: " + DateTime.Now);
+                }
+                for (int i = 0; i < sz; i++)
+                {
+                    this.Controls.Remove(snek[i]);
+                    snek[i] = null;
+                }
+                int[] schet = new int[3];
+                string[] nm = new string[3];
+                path = @"C:\users\user\ch.txt";
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        schet[i] = int.Parse(sr.ReadLine());
+                    }
+                }
+                path = @"C:\users\user\name.txt";
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        nm[i] = sr.ReadLine();
+                    }
+                }
+                path = @"C:\users\user\name.txt";
+                using (StreamWriter swn = new StreamWriter(path, false, System.Text.Encoding.Default))
+                {
+                    path = @"C:\users\user\ch.txt";
+                    using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (schet[i] < sz)
+                            {
+                                sw.WriteLine(sz);
+                                swn.WriteLine(name);
+                                sz = 0;
+                            }
+                            else
+                            {
+                                sw.WriteLine(schet[i]);
+                                swn.WriteLine(nm[i]);
+                            }
+                        }
+                    }
+                }
+                lose = false;
             }
             sz = 0;
+            nap = 3;
+            time.Interval = 200;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -201,6 +312,10 @@ namespace змея
             textBox1.Visible = false;
             pictureBox1.Visible = true;
             name = textBox1.Text;
+
+            label1.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
         }
     }
 }
