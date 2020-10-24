@@ -15,6 +15,9 @@ namespace змея
 {
     public partial class Form1 : Form
     {
+        bool pause = false;
+        int col = 0;
+        int mon = 0;
         bool lose = true;
         string path = @"C:\users\user\res.txt";
         string name;
@@ -73,6 +76,18 @@ namespace змея
                         res();
                     }
                     break;
+
+                case "Space":
+                    pause = !pause;
+                    if (pause)
+                    {
+                        time.Stop();
+                    }
+                    else
+                    {
+                        time.Start();
+                    }
+                    break;
             }
         }
 
@@ -83,6 +98,15 @@ namespace змея
             int tint;
             string tn;
             pictureBox1.Visible = false;
+            col = 0;
+
+            path = @"C:\users\user\cash.txt";
+            using (StreamReader srch = new StreamReader(path))
+            {
+                mon = int.Parse(srch.ReadLine());
+            }
+            label4.Text = "Баланс: " + mon;
+
             path = @"C:\users\user\name.txt";
             using (StreamReader sr = new StreamReader(path))
             {
@@ -220,6 +244,13 @@ namespace змея
 
         private void res()
         {
+            nap = 3;
+            mon = mon + sz;
+            path = @"C:\users\user\cash.txt";
+            using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+            {
+                sw.WriteLine(mon);
+            }
             path = @"C:\users\user\res.txt";
             pictureBox1.Location = new Point(0, 0);
             if (lose)
@@ -282,6 +313,27 @@ namespace змея
 
         private void button1_Click(object sender, EventArgs e)
         {
+            switch (col)
+            {
+                case 0:
+                    pictureBox1.BackColor = Color.Red;
+                    break;
+                case 1:
+                    pictureBox1.BackColor = Color.Blue;
+                    break;
+                case 2:
+                    pictureBox1.BackColor = Color.Yellow;
+                    break;
+            }
+
+            label4.Visible = false;
+            button2.Enabled = false;
+            button2.Visible = false;
+            button3.Enabled = false;
+            button3.Visible = false;
+            button4.Enabled = false;
+            button4.Visible = false;
+
             this.KeyDown += new KeyEventHandler(otk);
             randapple();
             time.Interval = 200;
@@ -316,6 +368,29 @@ namespace змея
             label1.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            col = 0;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (mon > 25)
+            {
+                col = 1;
+                mon = mon - 25;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (mon > 50)
+            {
+                col = 2;
+                mon = mon - 50;
+            }
         }
     }
 }

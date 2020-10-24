@@ -7,3 +7,12 @@ C:\Users\User\source\repos\змея\змея\obj\Debug\змея.csproj.GenerateR
 C:\Users\User\source\repos\змея\змея\obj\Debug\змея.exe
 C:\Users\User\source\repos\змея\змея\obj\Debug\змея.pdb
 C:\Users\User\source\repos\змея\змея\obj\Debug\змея.Form1.resources
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\bin\Debug\змея.exe.config
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\bin\Debug\змея.exe
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\bin\Debug\змея.pdb
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\obj\Debug\змея.csprojAssemblyReference.cache
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\obj\Debug\змея.Form1.resources
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\obj\Debug\змея.Properties.Resources.resources
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\obj\Debug\змея.csproj.GenerateResource.cache
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\obj\Debug\змея.exe
+C:\Users\User\source\repos\Snake\Snake-main\змея\змея\obj\Debug\змея.pdb
