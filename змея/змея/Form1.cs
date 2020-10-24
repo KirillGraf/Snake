@@ -15,6 +15,7 @@ namespace змея
 {
     public partial class Form1 : Form
     {
+        bool ded = false;
         bool pause = false;
         int col = 0;
         int mon = 0;
@@ -45,6 +46,7 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        ded = true;
                         time.Stop();
                     }
                     break;
@@ -57,6 +59,7 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        ded = true;
                         time.Stop();
                     }
                     break;
@@ -69,6 +72,7 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        ded = true;
                         time.Stop();
                     }
                     break;
@@ -81,21 +85,25 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        ded = true;
                         time.Stop();
                     }
                     break;
 
                 case "Space":
-                    pause = !pause;
-                    if (pause)
+                    if (!ded)
                     {
-                        label5.Visible = true;
-                        time.Stop();
-                    }
-                    else
-                    {
-                        label5.Visible = false;
-                        time.Start();
+                        pause = !pause;
+                        if (pause)
+                        {
+                            label5.Visible = true;
+                            time.Stop();
+                        }
+                        else
+                        {
+                            label5.Visible = false;
+                            time.Start();
+                        }
                     }
                     break;
             }
@@ -215,24 +223,28 @@ namespace змея
             {
                 label6.Visible = true;
                 label6.Visible = true;
+                ded = true;
                 time.Stop();
             }
             if (!(pictureBox1.Location.Y < 700))
             {
                 label6.Visible = true;
                 label6.Visible = true;
+                ded = true;
                 time.Stop();
             }
             if (!(pictureBox1.Location.X < 750))
             {
                 label6.Visible = true;
                 label6.Visible = true;
+                ded = true;
                 time.Stop();
             }
             if (!(pictureBox1.Location.X > -50))
             {
                 label6.Visible = true;
                 label6.Visible = true;
+                ded = true;
                 time.Stop();
             }
             if (pictureBox1.Location == apple.Location)
@@ -262,6 +274,7 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        ded = true;
                         time.Stop();
                     }
                 }
@@ -357,6 +370,10 @@ namespace змея
             }
 
             label4.Visible = false;
+            label7.Visible = false;
+            label8.Visible = false;
+            label9.Visible = false;
+
             button2.Enabled = false;
             button2.Visible = false;
             button3.Enabled = false;
@@ -371,7 +388,7 @@ namespace змея
             time.Start();
             apple.Size = new Size(50, 50);
             apple.BackColor = Color.Green;
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 15; i++)
             {
                 PictureBox pic = new PictureBox();
                 pic.BackColor = Color.Black;
@@ -379,7 +396,7 @@ namespace змея
                 pic.Size = new Size(800 - 50, 1);
                 this.Controls.Add(pic);
             }
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 16; i++)
             {
                 PictureBox pic = new PictureBox();
                 pic.BackColor = Color.Black;
@@ -403,6 +420,7 @@ namespace змея
         private void button2_Click(object sender, EventArgs e)
         {
             col = 0;
+            label4.Text = "Баланс: " + mon;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -412,6 +430,7 @@ namespace змея
                 col = 1;
                 mon = mon - 25;
             }
+            label4.Text = "Баланс: " + mon;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -421,10 +440,12 @@ namespace змея
                 col = 2;
                 mon = mon - 50;
             }
+            label4.Text = "Баланс: " + mon;
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
+            ded = false;
             res();
         }
     }
