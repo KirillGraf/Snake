@@ -43,7 +43,9 @@ namespace змея
                     }
                     else
                     {
-                        res();
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        time.Stop();
                     }
                     break;
                 case "Down":
@@ -53,7 +55,9 @@ namespace змея
                     }
                     else
                     {
-                        res();
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        time.Stop();
                     }
                     break;
                 case "Right":
@@ -63,7 +67,9 @@ namespace змея
                     }
                     else
                     {
-                        res();
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        time.Stop();
                     }
                     break;
                 case "Left":
@@ -73,7 +79,9 @@ namespace змея
                     }
                     else
                     {
-                        res();
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        time.Stop();
                     }
                     break;
 
@@ -81,10 +89,12 @@ namespace змея
                     pause = !pause;
                     if (pause)
                     {
+                        label5.Visible = true;
                         time.Stop();
                     }
                     else
                     {
+                        label5.Visible = false;
                         time.Start();
                     }
                     break;
@@ -93,6 +103,10 @@ namespace змея
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            label5.Visible = false;
+            label6.Visible = false;
+            label6.Visible = false;
+
             string[] tname = new string[3];
             int[] tch = new int[3];
             int tint;
@@ -191,25 +205,35 @@ namespace змея
                 {
                     if (pictureBox1.Location == snek[i].Location)
                     {
-                        res();
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        time.Stop();
                     }
                 }
             }
             if (!(pictureBox1.Location.Y > -50))
             {
-                res();
+                label6.Visible = true;
+                label6.Visible = true;
+                time.Stop();
             }
             if (!(pictureBox1.Location.Y < 700))
             {
-                res();
+                label6.Visible = true;
+                label6.Visible = true;
+                time.Stop();
             }
             if (!(pictureBox1.Location.X < 750))
             {
-                res();
+                label6.Visible = true;
+                label6.Visible = true;
+                time.Stop();
             }
             if (!(pictureBox1.Location.X > -50))
             {
-                res();
+                label6.Visible = true;
+                label6.Visible = true;
+                time.Stop();
             }
             if (pictureBox1.Location == apple.Location)
             {
@@ -236,7 +260,9 @@ namespace змея
                 {
                     if (pictureBox1.Location == snek[i].Location)
                     {
-                        res();
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        time.Stop();
                     }
                 }
             }
@@ -244,6 +270,10 @@ namespace змея
 
         private void res()
         {
+            label6.Visible = false;
+            label6.Visible = false;
+            time.Start();
+
             nap = 3;
             mon = mon + sz;
             path = @"C:\users\user\cash.txt";
@@ -391,6 +421,11 @@ namespace змея
                 col = 2;
                 mon = mon - 50;
             }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            res();
         }
     }
 }
