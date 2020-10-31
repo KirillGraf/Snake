@@ -43,6 +43,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +60,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(292, 353);
+            this.button1.Location = new System.Drawing.Point(345, 353);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(183, 100);
             this.button1.TabIndex = 1;
@@ -68,7 +70,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(292, 307);
+            this.textBox1.Location = new System.Drawing.Point(345, 314);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(183, 20);
             this.textBox1.TabIndex = 2;
@@ -144,7 +146,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label5.Location = new System.Drawing.Point(242, 253);
+            this.label5.Location = new System.Drawing.Point(296, 237);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(286, 97);
             this.label5.TabIndex = 10;
@@ -156,7 +158,7 @@
             this.label6.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label6.Location = new System.Drawing.Point(242, 262);
+            this.label6.Location = new System.Drawing.Point(278, 237);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(320, 97);
             this.label6.TabIndex = 11;
@@ -193,12 +195,36 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "50";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(788, 51);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "label10";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.ForeColor = System.Drawing.Color.Cornsilk;
+            this.label11.Location = new System.Drawing.Point(296, 348);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(272, 97);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "Home";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.ClientSize = new System.Drawing.Size(749, 699);
+            this.ClientSize = new System.Drawing.Size(890, 699);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -214,6 +240,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -240,6 +267,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }
 

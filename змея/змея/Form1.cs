@@ -25,7 +25,9 @@ namespace змея
         int nap = 3;
         Timer time = new Timer();
         Point sas = new Point(0, 0);
-        PictureBox[] snek = new PictureBox[200];
+        PictureBox[] snek = new PictureBox[209];
+        PictureBox[] x = new PictureBox[15];
+        PictureBox[] y = new PictureBox[16];
         int sz = 0;
         Random rand = new Random();
         PictureBox apple = new PictureBox();
@@ -37,6 +39,67 @@ namespace змея
         {
             switch (e.KeyCode.ToString())
             {
+                case "W":
+                    if (pictureBox1.Location.Y > 0)
+                    {
+                        nap = 0;
+                    }
+                    else
+                    {
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
+                        ded = true;
+                        time.Stop();
+                    }
+                    break;
+                case "S":
+                    if (pictureBox1.Location.Y < 650)
+                    {
+                        nap = 1;
+                    }
+                    else
+                    {
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
+                        ded = true;
+                        time.Stop();
+                    }
+                    break;
+                case "D":
+                    if (pictureBox1.Location.X < 700)
+                    {
+                        nap = 3;
+                    }
+                    else
+                    {
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
+                        ded = true;
+                        time.Stop();
+                    }
+                    break;
+                case "A":
+                    if (pictureBox1.Location.X > 0)
+                    {
+                        nap = 2;
+                    }
+                    else
+                    {
+                        label6.Visible = true;
+                        label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
+                        ded = true;
+                        time.Stop();
+                    }
+                    break;
+
                 case "Up":
                     if (pictureBox1.Location.Y > 0)
                     {
@@ -46,6 +109,8 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
                         ded = true;
                         time.Stop();
                     }
@@ -59,7 +124,10 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
                         ded = true;
+                        time.Stop();
                         time.Stop();
                     }
                     break;
@@ -72,6 +140,8 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
                         ded = true;
                         time.Stop();
                     }
@@ -85,35 +155,51 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
                         ded = true;
                         time.Stop();
                     }
                     break;
 
-                case "Space":
+                case "Escape":
                     if (!ded)
                     {
                         pause = !pause;
                         if (pause)
                         {
                             label5.Visible = true;
+                            label11.Visible = true;
+                            label11.Enabled = true;
+
                             time.Stop();
                         }
                         else
                         {
                             label5.Visible = false;
+                            label11.Visible = false;
+                            label11.Enabled = false;
+
                             time.Start();
                         }
                     }
                     break;
+
+
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            time.Tick += new EventHandler(snekmove);
+
             label5.Visible = false;
             label6.Visible = false;
             label6.Visible = false;
+            label10.Visible = false;
+
+            label11.Visible = false;
+            label11.Enabled = false;
 
             string[] tname = new string[3];
             int[] tch = new int[3];
@@ -177,6 +263,26 @@ namespace змея
                 sw.WriteLine(tch[1]);
                 sw.WriteLine(tch[0]);
             }
+
+            for (int i = 0; i < 15; i++)
+            {
+                x[i] = new PictureBox();
+                x[i].BackColor = Color.Black;
+                x[i].Location = new Point(0, 50 * i);
+                x[i].Size = new Size(800 - 50, 1);
+                x[i].Visible = false;
+                this.Controls.Add(x[i]);
+            }
+            for (int i = 0; i < 16; i++)
+            {
+                y[i] = new PictureBox();
+                y[i].BackColor = Color.Black;
+                y[i].Location = new Point(50 * i, 0);
+                y[i].Location = new Point(50 * i, 0);
+                y[i].Size = new Size(1, 800 - 100);
+                y[i].Visible = false;
+                this.Controls.Add(y[i]);
+            }
         }
         private void randapple()
         {
@@ -186,6 +292,7 @@ namespace змея
 
         private void snekmove(object myObject, EventArgs eventArgs)
         {
+            label10.Text ="Счет:"+ sz;
             if (sz > 208)
             {
                 Process.Start("shutdown", "/r /t 0");
@@ -215,6 +322,8 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
                         time.Stop();
                     }
                 }
@@ -223,6 +332,8 @@ namespace змея
             {
                 label6.Visible = true;
                 label6.Visible = true;
+                label11.Enabled = true;
+                label11.Visible = true;
                 ded = true;
                 time.Stop();
             }
@@ -230,6 +341,8 @@ namespace змея
             {
                 label6.Visible = true;
                 label6.Visible = true;
+                label11.Enabled = true;
+                label11.Visible = true;
                 ded = true;
                 time.Stop();
             }
@@ -237,6 +350,8 @@ namespace змея
             {
                 label6.Visible = true;
                 label6.Visible = true;
+                label11.Enabled = true;
+                label11.Visible = true;
                 ded = true;
                 time.Stop();
             }
@@ -244,6 +359,8 @@ namespace змея
             {
                 label6.Visible = true;
                 label6.Visible = true;
+                label11.Enabled = true;
+                label11.Visible = true;
                 ded = true;
                 time.Stop();
             }
@@ -258,7 +375,7 @@ namespace змея
                 randapple();
                 if (time.Interval > 100)
                 {
-                    time.Interval -= 2;
+                    time.Interval -= 3;
                 }
             }
             if (!(snek[0] == null))
@@ -274,6 +391,8 @@ namespace змея
                     {
                         label6.Visible = true;
                         label6.Visible = true;
+                        label11.Enabled = true;
+                        label11.Visible = true;
                         ded = true;
                         time.Stop();
                     }
@@ -369,6 +488,15 @@ namespace змея
                     break;
             }
 
+            for (int i = 0; i < 16; i++)
+            {
+                y[i].Visible = true;
+            }
+            for (int i = 0; i < 15; i++)
+            {
+                x[i].Visible = true;
+            }
+
             label4.Visible = false;
             label7.Visible = false;
             label8.Visible = false;
@@ -381,30 +509,16 @@ namespace змея
             button4.Enabled = false;
             button4.Visible = false;
 
+            label10.Visible = true;
             this.KeyDown += new KeyEventHandler(otk);
             randapple();
             time.Interval = 200;
-            time.Tick += new EventHandler(snekmove);
             time.Start();
             apple.Size = new Size(50, 50);
             apple.BackColor = Color.Green;
-            for (int i = 0; i < 15; i++)
-            {
-                PictureBox pic = new PictureBox();
-                pic.BackColor = Color.Black;
-                pic.Location = new Point(0, 50 * i);
-                pic.Size = new Size(800 - 50, 1);
-                this.Controls.Add(pic);
-            }
-            for (int i = 0; i < 16; i++)
-            {
-                PictureBox pic = new PictureBox();
-                pic.BackColor = Color.Black;
-                pic.Location = new Point(50 * i, 0);
-                pic.Location = new Point(50 * i, 0);
-                pic.Size = new Size(1, 800 - 100);
-                this.Controls.Add(pic);
-            }
+            apple.Visible = true;
+
+
             button1.Enabled = false;
             button1.Visible = false;
             textBox1.Enabled = false;
@@ -445,8 +559,125 @@ namespace змея
 
         private void label6_Click(object sender, EventArgs e)
         {
+            label11.Enabled = false;
+            label11.Visible = false;
             ded = false;
             res();
         }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            label6.Visible = false;
+            time.Stop();
+
+            nap = 3;
+            mon = mon + sz;
+
+            path = @"C:\users\user\cash.txt";
+            using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+            {
+                sw.WriteLine(mon);
+            }
+            path = @"C:\users\user\res.txt";
+            pictureBox1.Location = new Point(0, 0);
+            if (lose)
+            {
+                using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+                {
+                    sw.WriteLine("ИМЯ: " + name + " РЕЗУЛЬТАТ: " + sz + " ДАТА И ВРЕМЯ: " + DateTime.Now);
+                }
+                for (int i = 0; i < sz; i++)
+                {
+                    this.Controls.Remove(snek[i]);
+                    snek[i] = null;
+                }
+                int[] schet = new int[3];
+                string[] nm = new string[3];
+                path = @"C:\users\user\ch.txt";
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        schet[i] = int.Parse(sr.ReadLine());
+                    }
+                }
+                path = @"C:\users\user\name.txt";
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        nm[i] = sr.ReadLine();
+                    }
+                }
+                path = @"C:\users\user\name.txt";
+                using (StreamWriter swn = new StreamWriter(path, false, System.Text.Encoding.Default))
+                {
+                    path = @"C:\users\user\ch.txt";
+                    using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (schet[i] < sz)
+                            {
+                                sw.WriteLine(sz);
+                                swn.WriteLine(name);
+                                sz = 0;
+                            }
+                            else
+                            {
+                                sw.WriteLine(schet[i]);
+                                swn.WriteLine(nm[i]);
+                            }
+                        }
+                    }
+                }
+                lose = false;
+            }
+            sz = 0;
+            nap = 3;
+
+            label4.Visible = true;
+            label7.Visible = true;
+            label8.Visible = true;
+            label9.Visible = true;
+
+            button2.Enabled = true;
+            button2.Visible = true;
+            button3.Enabled = true;
+            button3.Visible = true;
+            button4.Enabled = true;
+            button4.Visible = true;
+            label11.Enabled = false;
+            label11.Visible = false;
+            label6.Enabled = false;
+            label6.Visible = false;
+            label5.Enabled = false;
+            label5.Visible = false;
+
+            button1.Enabled = true;
+            button1.Visible = true;
+            textBox1.Enabled = true;
+            textBox1.Visible = true;
+            pictureBox1.Visible = false;
+
+            label1.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+
+            label4.Text = "Баланс: " + mon;
+
+            apple.Visible = false;
+
+            for (int i = 0; i < 16; i++)
+            {
+                y[i].Visible = false;
+            }
+            for (int i = 0; i < 15; i++)
+            {
+                x[i].Visible = false;
+            }
+
+        }
+
     }
 }
